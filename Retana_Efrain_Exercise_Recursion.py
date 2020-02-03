@@ -11,6 +11,7 @@ import math
 
 # PROBLEM 1
 def sum_list(L):
+    # grabs a list and sums all of its elements
     if len(L) == 0: #Base case, L is empty
         return 0
     else:
@@ -18,7 +19,8 @@ def sum_list(L):
 #-------------------------
 # PROBLEM 2
 def is_in_list(A,a):
-    if len(A) == 0:
+    #
+    if len(A) == 0: # Base case, if A is empty
         return False
     if A[0] == a:
         return True
@@ -26,7 +28,8 @@ def is_in_list(A,a):
 #------------------------
 # PROBLEM 3
 def smallest(L):
-    if len(L) == 0:
+    # grabs a list and returns the smallest element in the list
+    if len(L) == 0: # if L is empty
         return 0
     elif len(L) == 1:
         return L[0]
@@ -34,46 +37,75 @@ def smallest(L):
 #----------------------------------
 # PROBLEM 4
 def binary(n):
-    if n>1:
+    if n>1: # base case to run while n > 1
+        # split n by a (floor) int then find modulus then add the modulus of n
+        # to the return
         return binary(int(n//2)) + str(n%2)
     return str(n % 2)
 #-----------------------------------    
 # PROBLEM 5
 def identical(L1,L2):
-    if len(L1) == 0 and len(L2)==0:
+    #
+    if len(L1) == 0 and len(L2)==0: # base case to check when both lists are the same size
         return True
-    elif len(L1) != len(L2):
+    elif len(L1) != len(L2): # if both are not the same size then false
         return False
+    # checks each element through each recursive call
     if L1[0] != L2[0]:
         return False
     return identical(L1[1:],L2[1:])
 #----------------------------------
 # PROBLEM 6
 def reverse(L):
-    if len(L) == 0:
+    if len(L) == 0: # base case to check when L is empty
         return []
+    # return the last element of each recursive call
     return [L[-1]] + reverse(L[:-1])
 #----------------------------------
 # PROBLEM 7
 def reverse_in_place(L,first,last):
-    if len(L) == 0:
+    if len(L) == 0: # when L is empty
         return []
-    if first == last:
+    # when both pointers cross, reverse should end
+    if first >= last:
         return L
+    # swap the first and last elements, then increase the first pointer and decrease
+    # the last pointer
     swap = L[first]
     L[first] =L[last]
     L[last] = swap
     return reverse_in_place(L,first+1,last-1)
-    
-                
+#--------------------------------------
+# PROBLEM 8
 def is_sorted(L):
-    return True
-
+    if len(L) <= 1: # base case to check when there is 1 element or less
+        return True
+    # compare first and last element and if they are sorted continue check from L[1:]
+    return L[0] < L[1] and is_sorted(L[1:])
+#--------------------------------------
+# PROBLEM 9
 def print_binary(string_so_far,digits_left):
-    return
-
+    # once the string is equal to the number of digits, display the possible combination
+    if len(string_so_far) == digits_left:
+        print(string_so_far)
+        return
+    # run a loop to add a '0' or '1' to all possible positions in strings_so_far
+    for num in '01':
+        print_binary(string_so_far + num,digits_left)
+#------------------------------------
+# PROBLEM 10
 def permutations(word_so_far, chars_left):
-    return 
+    if len(chars_left) == 0: # when the amount of characters left is 0, display the word_so_far
+        print(word_so_far)
+        return
+    # run a loop for the len of chars_left to create a combination of n-1 (amount of letters)
+    # then create a recursive call to permutate the element in each pos
+    for letter in range(len(chars_left)):
+        combination = chars_left[0:letter] + chars_left[letter + 1:]
+        permutations(word_so_far + chars_left[letter:letter+1],combination)
+    
+#-------------------------------------
+# PROBLEM 11
 
 def meals(choice_so_far,starter,main,desert):
     return
@@ -136,6 +168,7 @@ True
 [4, 1, 7, 9, 3, 0, 6, 5, 2, 8]
 [8, 2, 5, 6, 0, 3, 9, 7, 1, 4]
 False
+True
 True
 True
 00
