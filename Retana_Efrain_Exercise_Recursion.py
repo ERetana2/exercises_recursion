@@ -71,9 +71,10 @@ def reverse_in_place(L,first,last):
         return L
     # swap the first and last elements, then increase the first pointer and decrease
     # the last pointer
-    swap = L[first]
-    L[first] =L[last]
-    L[last] = swap
+#    swap = L[first]
+#    L[first] =L[last]
+#    L[last] = swap
+    L[first],L[last] = L[last],L[first]
     return reverse_in_place(L,first+1,last-1)
 #--------------------------------------
 # PROBLEM 8
@@ -85,13 +86,18 @@ def is_sorted(L):
 #--------------------------------------
 # PROBLEM 9
 def print_binary(string_so_far,digits_left):
-    # once the string is equal to the number of digits, display the possible combination
-    if len(string_so_far) == digits_left:
+    if digits_left == 0:
         print(string_so_far)
-        return
-    # run a loop to add a '0' or '1' to all possible positions in strings_so_far
-    for num in '01':
-        print_binary(string_so_far + num,digits_left)
+    else:
+        print_binary(string_so_far + '0' ,digits_left - 1)
+        print_binary(string_so_far + '1',digits_left - 1)
+    # once the string is equal to the number of digits, display the possible combination
+#    if len(string_so_far) == digits_left:
+#        print(string_so_far)
+#        return
+#    # run a loop to add a '0' or '1' to all possible positions in strings_so_far
+#    for num in '01':
+#        print_binary(string_so_far + num,digits_left)
 #------------------------------------
 # PROBLEM 10
 def permutations(word_so_far, chars_left):
@@ -108,7 +114,9 @@ def permutations(word_so_far, chars_left):
 # PROBLEM 11
 
 def meals(choice_so_far,starter,main,desert):
-    return
+    if len(choice_so_far) == 0:
+        for i in range(len(star))
+        
 
 if __name__ == "__main__":  
     L = [4,1,7,9,3,0,6,5,2,8]
